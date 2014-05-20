@@ -3,5 +3,3 @@
 .ruby-version
 .sass-cache
 node_modules
-assets/javascripts/vendor
-assets/images/icons/svg-sprites
