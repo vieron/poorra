@@ -1,0 +1,112 @@
+$prefixes: ("-webkit-", "-moz-", "-ms-", "-o-", "");
+
+@mixin vendor($prop, $values...) {
+    @each $prefix in $prefixes {
+        #{unquote($prefix)}#{$prop}: $values;
+    }
+}
+
+@mixin placeholder {
+    $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+    @each $placeholder in $placeholders {
+        &:#{$placeholder}-placeholder {
+            @content;
+        }
+    }
+}
+
+@mixin ico-dimensions($size) {
+    width: $size;
+    height: $size;
+    background-size: $size auto;
+}
+
+@function em($px, $base: $default-font-size) {
+    @return #{$px/$base}em;
+}
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    filter: alpha(opacity = $opacity * 100);
+}
+
+@mixin center-vertically($pseudo-el: 'before', $min-height: 0) {
+    position: relative;
+
+    &:#{$pseudo-el} {
+        content: '';
+        position: relative;
+        min-height: $min-height;
+        height: 100%;
+        width: 0;
+    }
+
+    &:#{$pseudo-el},
+    > * {
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+
+@mixin filter($values...) {
+    @include vendor('filter', $values);
+}
+
+%inline-block {
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+%reset-inline-block {
+    font-size: 0;
+
+    > * {
+        font-size: 1rem;
+    }
+}
+
+%clearfix {
+    &:before,
+    &:after {
+      content: ".";
+      display: block;
+      height: 0;
+      overflow: hidden;
+    }
+    &:after { clear: both; }
+    & { zoom: 1; }
+}
+
+%center-vertically {
+  @include center-vertically();
+}
+
+%inline-list {
+  li {
+    @extend %inline-block;
+  }
+}
+
+%media-block {
+    @extend %clearfix;
+    zoom: 1;
+
+    > div:first-child,
+    > figure {
+        float: left;
+    }
+
+    > div:last-child,
+    > blockquote,
+    > cite {
+        display: table;
+    }
+}
+
+
+%text-replacement {
+    overflow: hidden;
+    text-indent: -999em;
+}

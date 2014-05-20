@@ -1,0 +1,62 @@
+// Rendering and Defaults
+//
+// Enable antialiasing for better rendering and optimizeLegibility to enable
+// kerning and ligatures.
+
+* {
+    -webkit-font-smoothing: antialiased;
+    //-moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
+body, input, button, fieldset {
+    @extend .font-helvetica;
+    font-size: #{$default-font-size}px;
+}
+
+
+
+
+// Font stacks
+
+
+
+
+// Helvetica Neue font stack
+//
+// **Helvetica Neue** is the main typography in Poorra.
+//
+// You can use classes directly but it's preferable to extend them
+// (`@extend .font-helvetica-bold;`) or use font-weight vars when required
+// (`font-weight: $font-helvetica-light-weight;`).
+
+// http://emps.l-c-n.com/notebook/HelveticaNeue-font-weight
+$font-helvetica: 'Helvetica Neue', Helvetica, sans-serif;
+$font-helvetica-light-weight: 300;
+$font-helvetica-weight: 400;
+$font-helvetica-medium-weight: 500;
+$font-helvetica-bold-weight: 700;
+
+.font-helvetica {
+    font-family: $font-helvetica;
+    font-weight: $font-helvetica-weight;
+}
+
+.font-helvetica-light {
+    font-family: $font-helvetica;
+    font-weight: $font-helvetica-light-weight;
+}
+
+.font-helvetica-medium {
+    font-family: $font-helvetica;
+    font-weight: $font-helvetica-medium-weight;
+}
+
+.font-helvetica-bold {
+    font-family: $font-helvetica;
+    font-weight: $font-helvetica-bold-weight;
+}

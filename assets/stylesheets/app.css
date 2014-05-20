@@ -1,0 +1,456 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * A thin layer on top of normalize.css that provides a starting point more
+ * suitable for web applications. Removes the default spacing and border for
+ * appropriate elements.
+ */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset,
+button,
+input,
+figure {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  border: 0;
+}
+
+ol,
+ul,
+menu {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+/**
+ * Suppress the focus outline on links that cannot be accessed via keyboard.
+ * This prevents an unwanted focus outline from appearing around elements that
+ * might still respond to pointer events.
+ */
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
+body, input, button, fieldset {
+  font-size: 16pxpx;
+}
+
+.font-helvetica, body, input, button, fieldset {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.font-helvetica-light {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.font-helvetica-medium {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.font-helvetica-bold {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.Matches:before, .Matches:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.Matches:after {
+  clear: both;
+}
+.Matches {
+  zoom: 1;
+}
+
+.Ico {
+  overflow: hidden;
+  text-indent: -999em;
+}
+
+.Ico-cancel {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTIwIiB3aWR0aD0iNDAiPjxzdmcgY2xhc3M9ImNhbmNlbC13aGl0ZSIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iLTAuNSAtMC41IDQwIDQwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0wLjUgLTAuNSA0MCA0MCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uY2FuY2VsLXdoaXRlIGNpcmNsZSwgLmNhbmNlbC13aGl0ZSBlbGxpcHNlLCAuY2FuY2VsLXdoaXRlIGxpbmUsIC5jYW5jZWwtd2hpdGUgcGF0aCwgLmNhbmNlbC13aGl0ZSBwb2x5Z29uLCAuY2FuY2VsLXdoaXRlIHBvbHlsaW5lLCAuY2FuY2VsLXdoaXRlIHJlY3QsIC5jYW5jZWwtd2hpdGUgdGV4dCB7IGZpbGw6ICNGRkZGRkYgIWltcG9ydGFudDsgfTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5SZWN0YW5nbGUgMjggKyBSZWN0YW5nbGUgMjk8L3RpdGxlPjxnIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiIGZpbGw9IiNEOEQ4RDgiIGlkPSJSZWN0YW5nbGUtMjgtX3gyQl8tUmVjdGFuZ2xlLTI5Ij48cGF0aCBpZD0iUmVjdGFuZ2xlLTI4IiBkPSJNMzAuODEyIDM4LjU5M2wtMzAuNDAxLTMwLjQwMSA3Ljc3Ny03Ljc3NyAzMC40MDEgMzAuNDAxeiIvPjxwYXRoIGlkPSJSZWN0YW5nbGUtMjkiIGQ9Ik0zOC41OTMgOC4xODhsLTMwLjQwMSAzMC40MDEtNy43NzctNy43NzcgMzAuNDAxLTMwLjQwMXoiLz48L2c+PC9zdmc+PC9zdmc+");
+}
+
+.Ico-check {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTIwIiB3aWR0aD0iNDAiPjxzdmcgY2xhc3M9ImNoZWNrLXdoaXRlIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIyLjUgMS41IDQwIDQwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDIuNSAxLjUgNDAgNDAiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+LmNoZWNrLXdoaXRlIGNpcmNsZSwgLmNoZWNrLXdoaXRlIGVsbGlwc2UsIC5jaGVjay13aGl0ZSBsaW5lLCAuY2hlY2std2hpdGUgcGF0aCwgLmNoZWNrLXdoaXRlIHBvbHlnb24sIC5jaGVjay13aGl0ZSBwb2x5bGluZSwgLmNoZWNrLXdoaXRlIHJlY3QsIC5jaGVjay13aGl0ZSB0ZXh0IHsgZmlsbDogI0ZGRkZGRiAhaW1wb3J0YW50OyB9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlJlY3RhbmdsZSAyOCArIFJlY3RhbmdsZSAzMDwvdGl0bGU+PGcgaWQ9IlJlY3RhbmdsZS0yOC1feDJCXy1SZWN0YW5nbGUtMzAiIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIGZpbGw9IiNGM0YzRjMiPjxwYXRoIGlkPSJSZWN0YW5nbGUtMjgiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiIGQ9Ik0zLjA0NiAyNS4yNTFsNS44My03LjczNiAxMS40OTMgOC42NiAxMy41NjgtMjMuNTAxIDguMzg5IDQuODQzLTE4LjkzMyAzMi43OTQtMS4zNTgtLjc1MS0uMTg3LS4xNDEtNi4zNTktNC43OTItMTIuNDQzLTkuMzc2eiIvPjxwYXRoIGlkPSJQYXRoLTIiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiIGQ9Ik0yLjY4NyAyLjU1OSIvPjwvZz48L3N2Zz48L3N2Zz4=");
+}
+
+.Ico--white {
+  background-position: 0 -0%;
+}
+
+.Ico--dark-blue {
+  background-position: 0 -100%;
+}
+
+.Ico {
+  font-style: normal !important;
+  display: inline-block;
+  background-repeat: repeat-y;
+}
+
+.Ico--medium, .Ico {
+  width: 23px;
+  height: 23px;
+  background-size: 23px auto;
+}
+
+.Ico--big {
+  width: 30px;
+  height: 30px;
+  background-size: 30px auto;
+}
+
+.Ico--heavy {
+  width: 38px;
+  height: 38px;
+  background-size: 38px auto;
+}
+
+.Ico--small {
+  width: 20px;
+  height: 20px;
+  background-size: 20px auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.App {
+  background-color: #23282E;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.App-header {
+  overflow: hidden;
+  padding: 10px;
+}
+.App-header .Logo {
+  float: left;
+}
+.App-header .User {
+  float: right;
+}
+
+.App-content {
+  z-index: 5;
+}
+
+.App-sidebar {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: -200px;
+  width: 200px;
+  height: 100%;
+  min-height: 100vh;
+  padding: 10px;
+  background: #FFF;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: -o-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.App-sidebar.js-isOpen {
+  -webkit-transform: translateX(-200px);
+  -moz-transform: translateX(-200px);
+  -ms-transform: translateX(-200px);
+  -o-transform: translateX(-200px);
+  transform: translateX(-200px);
+}
+
+.Logo {
+  width: 106px;
+  height: 31px;
+}
+
+.User {
+  line-height: 1;
+}
+.User strong {
+  font-size: 10px;
+  color: #FFF;
+}
+.User strong,
+.User figure {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.Journey ul {
+  width: 100%;
+}
+
+.Journey-header {
+  padding: 4px 10px;
+  background-color: #2E353D;
+  color: #A9ACB0;
+  text-transform: uppercase;
+  overflow: hidden;
+  line-height: 1;
+}
+.Journey-header strong, .Journey-header em {
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1;
+  font-size: 10px;
+}
+.Journey-header strong {
+  float: left;
+}
+.Journey-header em {
+  float: right;
+}
+
+.Match {
+  position: relative;
+  color: #FFF;
+  text-align: center;
+  line-height: 0;
+  border-top: 1px solid #2E353D;
+  line-height: 1;
+}
+.Match:first-child {
+  border-top: none;
+}
+.Match .Bet {
+  display: none;
+}
+.Match.js-isOpen {
+  background-color: #13161A;
+}
+.Match.js-isOpen .Bet {
+  display: block;
+  margin-top: -10px;
+}
+.Match.js-isOpen .Match-result {
+  display: none;
+}
+.Match.js-isOpen .Match-bet:after,
+.Match.js-isOpen .Match-goals {
+  opacity: 0;
+}
+
+.Match-bet {
+  padding-top: 20px;
+  padding-bottom: 19px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+}
+.Match-bet:after {
+  content: '';
+  width: 4px;
+  height: 2px;
+  background: #FFF;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -2px;
+}
+.Match-bet > span {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  text-align: left;
+  white-space: nowrap;
+  padding-left: 8px;
+}
+.Match-bet > span .Match-team {
+  padding-left: 31px;
+  margin-left: 6px;
+}
+.Match-bet > span:first-child {
+  padding-right: 8px;
+  padding-left: 0;
+  text-align: right;
+}
+.Match-bet > span:first-child .Match-team {
+  padding-right: 31px;
+  padding-left: 0;
+  margin-right: 6px;
+  margin-left: 0;
+  background-position: center right;
+}
+
+.Match-team,
+.Match-goals {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+}
+
+.Match-team {
+  font-size: 13px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  background-repeat: no-repeat;
+  background-position: center left;
+  overflow: hidden;
+}
+
+.Match-goals {
+  font-size: 16px;
+  min-width: 9px;
+}
+
+.Match-result {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  bottom: 4px;
+  padding: 5px 0;
+  width: 40px;
+  margin-left: -20px;
+  text-align: center;
+  color: rgba(215, 219, 224, 0.5);
+  font-size: 10px;
+}
+
+.Bet {
+  text-align: center;
+}
+.Bet input {
+  background: transparent;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  font-size: 28px;
+  color: #FFF;
+  font-weight: bold;
+  text-align: left;
+  margin: 0 25px;
+  max-width: 70px;
+  line-height: 1;
+}
+.Bet input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+.Bet input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+.Bet input:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+.Bet input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+.Bet input:first-child {
+  text-align: right;
+}
+.Bet input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.Bet-actions {
+  padding: 12px 15px 24px;
+  overflow: hidden;
+}
+.Bet-actions .Btn {
+  float: right;
+  min-width: 48%;
+}
+.Bet-actions .Btn:first-child {
+  float: left;
+}
+
+.Btn {
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  height: 45px;
+  outline: none;
+}
+
+.Btn--submit {
+  background-color: #2B8FBD;
+  border-radius: 4px;
+}
+
+.Btn--cancel {
+  background-color: #23282E;
+  border-radius: 4px;
+}
+.Btn--cancel .Ico {
+  opacity: 0.3;
+}
+
+@media only screen and (min-width: 720px) {
+  .Matches .Matches-col {
+    float: left;
+    width: 50%;
+  }
+  .Matches .Matches-col:first-child:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    min-height: 100vh;
+    height: 100%;
+    width: 1px;
+    background: #2E353C;
+  }
+}

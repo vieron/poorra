@@ -1,0 +1,10 @@
+{
+  "name": "poorra",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "fastclick": "~1.0.1",
+    "zepto": "~1.1.3"
+  }
+}

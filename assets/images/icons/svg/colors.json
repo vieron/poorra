@@ -1,0 +1,10 @@
+{
+    "colors": {
+        "white": "#FFF",
+        "dark-blue": "#454756"
+    },
+
+    "defaults": ["white"],
+
+    "custom": {}
+}

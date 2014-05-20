@@ -1,0 +1,44 @@
+@import "../vendor/icons";
+
+// Icons
+//
+// Icons are generated with `grunt-svg2css` from .svg files in
+// `assets/images/icons/svg`.
+//
+// Markup:
+// <span class="Ico Ico--big {$modifiers}"></span>
+//
+// .Ico-cancel                   - -
+// .Ico-check                    - -
+
+.Ico {
+    font-style: normal!important;
+    display: inline-block;
+    background-repeat: repeat-y; // sprites are vertical
+    @extend %text-replacement;
+
+    @extend .Ico--medium;
+}
+
+
+
+// Icon sizes
+//
+// Markup:
+// <span class="Ico Ico-duck {$modifiers}"></span>
+
+.Ico--medium {
+    @include ico-dimensions(23px);
+}
+
+.Ico--big {
+    @include ico-dimensions(30px);
+}
+
+.Ico--heavy {
+    @include ico-dimensions(38px);
+}
+
+.Ico--small {
+    @include ico-dimensions(20px);
+}
