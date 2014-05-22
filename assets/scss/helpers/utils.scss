@@ -21,6 +21,20 @@ $prefixes: ("-webkit-", "-moz-", "-ms-", "-o-", "");
     background-size: $size auto;
 }
 
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
 @function em($px, $base: $default-font-size) {
     @return #{$px/$base}em;
 }

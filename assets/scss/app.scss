@@ -1,4 +1,4 @@
-$default-font-size: 16px;
+$default-font-size: 16;
 
 @import "base/base";
 @import "helpers/helpers";
@@ -21,10 +21,13 @@ a {
 
 
 .App-header {
+    @include vendor(box-sizing, border-box);
     overflow: hidden;
     padding: 10px;
+    height: 50px;
 
     .Logo {
+        margin-top: 6px;
         float: left;
     }
 
@@ -39,8 +42,9 @@ a {
 }
 
 
-$App-sidebar-width: 200px;
+$App-sidebar-width: 300px;
 .App-sidebar {
+    @include vendor(box-sizing, border-box);
     position: absolute;
     z-index: 10;
     top: 0;
@@ -48,8 +52,9 @@ $App-sidebar-width: 200px;
     width: $App-sidebar-width;
     height: 100%;
     min-height: 100vh;
-    padding: 10px;
-    background: #FFF;
+    padding: 49px 25px 30px 10px;
+    background: #13161A;
+    color: #FFF;
 
     @include vendor(box-sizing, border-box);
     @include vendor(transform, translateX(0));
@@ -62,8 +67,11 @@ $App-sidebar-width: 200px;
 
 
 .Logo  {
+    @extend %text-replacement;
     width: 106px;
-    height: 31px;
+    height: 21px;
+    background: url('../images/svg/logo.svg') no-repeat;
+    background-size: 100%;
 }
 
 
@@ -84,7 +92,7 @@ $App-sidebar-width: 200px;
 
 
 .Journey {
-    ul {
+    > ul {
         width: 100%;
     }
 }
@@ -120,6 +128,7 @@ $App-sidebar-width: 200px;
 
 
 .Match {
+    @include vendor(box-sizing, border-box);
     position: relative;
     color: #FFF;
     text-align: center;
@@ -151,8 +160,17 @@ $App-sidebar-width: 200px;
         .Match-goals {
             opacity: 0;
         }
+
+        .Match-bet {
+            padding-bottom: 0;
+            margin-bottom: 19px;
+        }
     }
 }
+
+$flag-width: 24px;
+$flag-gutter: $flag-width + 7px;
+$teams-gutter: 8px;
 
 .Match-bet {
     padding-top: 20px;
@@ -173,8 +191,13 @@ $App-sidebar-width: 200px;
         margin-left: -2px;
     }
 
-    $flag-gutter: 24px + 7px;
-    $teams-gutter: 8px;
+    .Badge {
+        position: absolute;
+        top: 28px;
+        right: 15px;
+        z-index: 8;
+
+    }
 
     > span {
         @include vendor(box-sizing, border-box);
@@ -218,6 +241,7 @@ $App-sidebar-width: 200px;
     text-overflow: ellipsis;
     background-repeat: no-repeat;
     background-position: center left;
+    background-size: $flag-width;
     overflow: hidden;
 }
 
@@ -285,24 +309,107 @@ $App-sidebar-width: 200px;
 }
 
 
+.Clasification {
+    width: 100%;
+    max-width: 450px;
+    border-collapse: collapse;
+
+    thead {
+        display: none;
+    }
+
+    td {
+        font-size: 11px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        vertical-align: middle;
+        text-align: left;
+
+        &:first-child,
+        &:last-child {
+            width: 40px;
+            text-align: right;
+        }
+
+        // avatar
+        &:nth-child(2) {
+            width: 31px;
+        }
+
+    }
+}
+
+
+.Badge {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    line-height: 16px;
+    color: #FFF;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: $font-helvetica-bold-weight
+}
+
+.Badge--green {
+    background-color: #53C476;
+}
+
+.Badge--red {
+    background-color: #E6462B;
+}
+
+.Badge--blue {
+    background-color: #4EAED9;
+}
+
 
 .Btn {
+    position: relative;
     cursor: pointer;
     border: none;
     display: inline-block;
     height: 45px;
     outline: none;
+
+    .Ico-spinner {
+        position: absolute;
+        opacity: 0;
+        top: 11px;
+        left: 50%;
+        margin-left: -11px;
+    }
+
+    &.js-isWaiting {
+        .Ico:not(.Ico-spinner) {
+            opacity: 0;
+        }
+
+        .Ico-spinner {
+            opacity: 1;
+            @include vendor(animation, spin 1s linear infinite);
+        }
+    }
 }
 
 
 .Btn--submit {
     background-color: #2B8FBD;
     border-radius: 4px;
+
+    &:focus {
+        background-color: lighten(#2B8FBD, 13);
+    }
 }
 
 .Btn--cancel {
     background-color: #23282E;
     border-radius: 4px;
+
+    &:focus {
+        background-color: lighten(#23282E, 3);
+    }
 
     .Ico {
         opacity: 0.3;
@@ -313,25 +420,73 @@ $App-sidebar-width: 200px;
 
 @media only screen and (min-width: 720px) {
     .Matches {
-        .Matches-col {
-            float: left;
-            width: 50%;
+        position: relative;
 
-            &:first-child:after {
-                content: '';
-                position: absolute;
-                left: 50%;
-                top: 60px;
-                min-height: 100vh;
-                height: 100%;
-                width: 1px;
-                background: #2E353C;
-            }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background-color: #2E353D;
         }
+
+        .Journey > ul {
+            overflow: hidden;
+        }
+
+        .Match {
+            width: 50%;
+            float: left;
+            border-top: none;
+            border-bottom: 1px solid #2E353D;
+        }
+    }
+
+    .Match-team {
+        font-size: 16px;
+    }
+
+    .Match-result,
+    .Journey-header em {
+        font-size: 11px;
+    }
+
+    .Clasification td {
+        font-size: 16px;
     }
 }
 
 
+@media only screen and (min-width: 1300px) {
+    .App-header .User {
+        display: none;
+    }
+
+    .App-content {
+        float: left;
+        width: 75%;
+        // max-width: 1000px;
+    }
+
+    .App-sidebar {
+        @include vendor(transform, translateX(0) !important);
+        width: 25%;
+        right: 0;
+    }
+}
+
+
+@include keyframes(spin) {
+    0% {
+        @include vendor(transform, rotate(0deg));
+    }
+
+    100% {
+        @include vendor(transform, rotate(360deg));
+    }
+}
 
 
 
