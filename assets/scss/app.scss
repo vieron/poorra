@@ -11,20 +11,25 @@ a {
 
 
 .App {
-    background-color: #23282E;
+    background-color: #13161A;
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 100%;
     min-height: 100vh;
 }
 
 
+$header-height: 50px;
 .App-header {
     @include vendor(box-sizing, border-box);
+    position: absolute;
+    top: 0;
+    left: 0;
     overflow: hidden;
     padding: 10px;
-    height: 50px;
+    width: 100%;
+    height: $header-height;
+    background-color: #23282E;
 
     .Logo {
         margin-top: 6px;
@@ -33,12 +38,20 @@ a {
 
     .User {
         float: right;
+        display: none;
+    }
+
+    .App--withSidebar & .User {
+        display: block;
     }
 }
 
 
 .App-content {
+    @include vendor(box-sizing, border-box);
     z-index: 5;
+    padding-top: $header-height;
+    min-height: 100vh;
 }
 
 
@@ -66,6 +79,8 @@ $App-sidebar-width: 300px;
 }
 
 
+
+
 .Logo  {
     @extend %text-replacement;
     width: 106px;
@@ -73,6 +88,8 @@ $App-sidebar-width: 300px;
     background: url('../images/svg/logo.svg') no-repeat;
     background-size: 100%;
 }
+
+
 
 
 .User {
@@ -91,11 +108,20 @@ $App-sidebar-width: 300px;
 }
 
 
+
+
 .Journey {
+    margin-top: -1px; // hide border-bottom in last row items
+
     > ul {
         width: 100%;
     }
+
+    .js-cloned {
+        display: none;
+    }
 }
+
 
 .Journey-header {
     padding: 4px 10px;
@@ -122,9 +148,15 @@ $App-sidebar-width: 300px;
 }
 
 
+
+
 .Matches {
     @extend %clearfix;
+    background-color: #23282E;
+    min-height: 100vh;
 }
+
+
 
 
 .Match {
@@ -133,12 +165,9 @@ $App-sidebar-width: 300px;
     color: #FFF;
     text-align: center;
     line-height: 0;
-    border-top: 1px solid #2E353D;
+    border-bottom: 1px solid #2E353D;
+    background-color: #23282E;
     line-height: 1;
-
-    &:first-child {
-        border-top: none;
-    }
 
     .Bet {
         display: none;
@@ -167,6 +196,7 @@ $App-sidebar-width: 300px;
         }
     }
 }
+
 
 $flag-width: 24px;
 $flag-gutter: $flag-width + 7px;
@@ -228,12 +258,14 @@ $teams-gutter: 8px;
     }
 }
 
+
 .Match-team,
 .Match-goals {
     display: inline-block;
     vertical-align: middle;
     line-height: 32px;
 }
+
 
 .Match-team {
     font-size: 13px;
@@ -245,10 +277,12 @@ $teams-gutter: 8px;
     overflow: hidden;
 }
 
+
 .Match-goals {
     font-size: 16px;
     min-width: 9px;
 }
+
 
 .Match-result {
     position: absolute;
@@ -262,6 +296,8 @@ $teams-gutter: 8px;
     color: rgba(#D7DBE0, 0.5);
     font-size: 10px;
 }
+
+
 
 
 .Bet {
@@ -294,6 +330,7 @@ $teams-gutter: 8px;
     }
 }
 
+
 .Bet-actions {
     padding: 12px 15px 24px;
     overflow: hidden;
@@ -308,10 +345,8 @@ $teams-gutter: 8px;
     }
 }
 
-
-.Clasification {
+%default-table-style {
     width: 100%;
-    max-width: 450px;
     border-collapse: collapse;
 
     thead {
@@ -324,24 +359,78 @@ $teams-gutter: 8px;
         padding-right: 10px;
         vertical-align: middle;
         text-align: left;
+        color: #FFF;
+        line-height: 1;
+    }
+}
 
+
+
+
+.Clasification {
+    @extend %default-table-style;
+    max-width: 450px;
+
+    td {
         &:first-child,
         &:last-child {
             width: 40px;
             text-align: right;
         }
 
+        &:last-child {
+            color: #6C7076;
+        }
+
         // avatar
         &:nth-child(2) {
             width: 31px;
         }
-
     }
 }
 
 
+
+
+.Bets {
+    padding: 20px 10px 20px 15px;
+    background-color: #13161A;
+
+    table {
+        @extend %default-table-style;
+    }
+
+    table td {
+        font-size: 13px;
+        // avatar
+        &:nth-child(1) {
+            width: 31px;
+        }
+
+        // user bet
+        &:nth-child(3) {
+            min-width: 35px;
+            color: #6C7076;
+        }
+
+        &:nth-child(3),
+        &:nth-child(4) {
+            text-align: right;
+        }
+
+        //badge
+        &:nth-child(4) {
+            width: 10px;
+        }
+    }
+}
+
+
+
+
 .Badge {
     display: inline-block;
+    text-align: center;
     width: 16px;
     height: 16px;
     border-radius: 100%;
@@ -365,57 +454,6 @@ $teams-gutter: 8px;
 }
 
 
-.Btn {
-    position: relative;
-    cursor: pointer;
-    border: none;
-    display: inline-block;
-    height: 45px;
-    outline: none;
-
-    .Ico-spinner {
-        position: absolute;
-        opacity: 0;
-        top: 11px;
-        left: 50%;
-        margin-left: -11px;
-    }
-
-    &.js-isWaiting {
-        .Ico:not(.Ico-spinner) {
-            opacity: 0;
-        }
-
-        .Ico-spinner {
-            opacity: 1;
-            @include vendor(animation, spin 1s linear infinite);
-        }
-    }
-}
-
-
-.Btn--submit {
-    background-color: #2B8FBD;
-    border-radius: 4px;
-
-    &:focus {
-        background-color: lighten(#2B8FBD, 13);
-    }
-}
-
-.Btn--cancel {
-    background-color: #23282E;
-    border-radius: 4px;
-
-    &:focus {
-        background-color: lighten(#23282E, 3);
-    }
-
-    .Ico {
-        opacity: 0.3;
-    }
-}
-
 
 
 @media only screen and (min-width: 720px) {
@@ -432,16 +470,24 @@ $teams-gutter: 8px;
             background-color: #2E353D;
         }
 
-        .Journey > ul {
+        .Journey {
             overflow: hidden;
+
+            > ul {
+                width: 50%;
+                float: left;
+            }
+
+
+            .js-cloned {
+                display: block;
+            }
+
+            .js-2n-original {
+                display: none;
+            }
         }
 
-        .Match {
-            width: 50%;
-            float: left;
-            border-top: none;
-            border-bottom: 1px solid #2E353D;
-        }
     }
 
     .Match-team {
@@ -453,8 +499,9 @@ $teams-gutter: 8px;
         font-size: 11px;
     }
 
-    .Clasification td {
-        font-size: 16px;
+    .Clasification td,
+    .Bets table td {
+        font-size: 15px;
     }
 }
 
@@ -464,16 +511,18 @@ $teams-gutter: 8px;
         display: none;
     }
 
-    .App-content {
-        float: left;
-        width: 75%;
-        // max-width: 1000px;
-    }
+    .App--withSidebar {
+        .App-content {
+            float: left;
+            width: 75%;
+            // max-width: 1000px;
+        }
 
-    .App-sidebar {
-        @include vendor(transform, translateX(0) !important);
-        width: 25%;
-        right: 0;
+        .App-sidebar {
+            @include vendor(transform, translateX(0) !important);
+            width: 25%;
+            right: 0;
+        }
     }
 }
 
@@ -487,27 +536,3 @@ $teams-gutter: 8px;
         @include vendor(transform, rotate(360deg));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

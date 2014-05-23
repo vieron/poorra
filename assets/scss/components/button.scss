@@ -1,0 +1,51 @@
+.Btn {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    height: 45px;
+    outline: none;
+    line-height: 1;
+
+    .Ico-spinner {
+        position: absolute;
+        opacity: 0;
+        top: 11px;
+        left: 50%;
+        margin-left: -11px;
+    }
+
+    &.js-isWaiting {
+        .Ico:not(.Ico-spinner) {
+            opacity: 0;
+        }
+
+        .Ico-spinner {
+            opacity: 1;
+            @include vendor(animation, spin 1s linear infinite);
+        }
+    }
+}
+
+
+.Btn--submit {
+    background-color: #2B8FBD;
+    border-radius: 4px;
+
+    &:focus {
+        background-color: lighten(#2B8FBD, 13);
+    }
+}
+
+.Btn--cancel {
+    background-color: #23282E;
+    border-radius: 4px;
+
+    &:focus {
+        background-color: lighten(#23282E, 3);
+    }
+
+    .Ico {
+        opacity: 0.3;
+    }
+}
