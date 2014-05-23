@@ -90,6 +90,8 @@ $.extend(Matches.prototype, {
 
     init: function() {
         this.bet = new Bet();
+
+        this.splitIn2Cols();
         this.events();
     },
 
@@ -98,6 +100,20 @@ $.extend(Matches.prototype, {
         this.$el.on('click', '.Match-bet', this.toggleMatch.bind(this));
         this.$el.on('click', '.Match-result', u.stopPropagation);
         this.$el.on('submit', 'form', this.onSubmit.bind(this));
+    },
+
+    // Ugly hack to handle single/double column layout from CSS in a "responsive" way.
+    // Add `js-2n-original` class to the even list-items and clone them into
+    // a new sibling list with a `js-cloned` class.
+    splitIn2Cols: function() {
+        var $lists = this.$el.find('.Journey > ul');
+
+        $lists.each(function(i, list) {
+            var $list = $(list);
+            var $2n = $list.find('li:nth-child(2n + 2)');
+            $('<ul class="js-cloned"/>').insertAfter($list).append($2n.clone());
+            $2n.addClass('js-2n-original');
+        });
     },
 
     toggleMatch: function(e) {
