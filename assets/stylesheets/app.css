@@ -134,30 +134,60 @@ body, input, button, fieldset {
   font-style: normal !important;
   display: inline-block;
   background-repeat: repeat-y;
+  line-height: 1;
 }
 
 .Ico--medium, .Ico {
-  width: 23px;
-  height: 23px;
-  background-size: 23px auto;
+  width: 22px;
+  height: 22px;
+  background-size: 22px auto;
 }
 
-.Ico--big {
-  width: 30px;
-  height: 30px;
-  background-size: 30px auto;
+.Btn {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  height: 45px;
+  outline: none;
+  line-height: 1;
+}
+.Btn .Ico-spinner {
+  position: absolute;
+  opacity: 0;
+  top: 11px;
+  left: 50%;
+  margin-left: -11px;
+}
+.Btn.js-isWaiting .Ico:not(.Ico-spinner) {
+  opacity: 0;
+}
+.Btn.js-isWaiting .Ico-spinner {
+  opacity: 1;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  -ms-animation: spin 1s linear infinite;
+  -o-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
-.Ico--heavy {
-  width: 38px;
-  height: 38px;
-  background-size: 38px auto;
+.Btn--submit {
+  background-color: #2B8FBD;
+  border-radius: 4px;
+}
+.Btn--submit:focus {
+  background-color: #53aed8;
 }
 
-.Ico--small {
-  width: 20px;
-  height: 20px;
-  background-size: 20px auto;
+.Btn--cancel {
+  background-color: #23282E;
+  border-radius: 4px;
+}
+.Btn--cancel:focus {
+  background-color: #2a3037;
+}
+.Btn--cancel .Ico {
+  opacity: 0.3;
 }
 
 a {
@@ -165,11 +195,10 @@ a {
 }
 
 .App {
-  background-color: #23282E;
+  background-color: #13161A;
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100%;
   min-height: 100vh;
 }
 
@@ -179,9 +208,14 @@ a {
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
   padding: 10px;
+  width: 100%;
   height: 50px;
+  background-color: #23282E;
 }
 .App-header .Logo {
   margin-top: 6px;
@@ -189,10 +223,21 @@ a {
 }
 .App-header .User {
   float: right;
+  display: none;
+}
+.App--withSidebar .App-header .User {
+  display: block;
 }
 
 .App-content {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
   z-index: 5;
+  padding-top: 50px;
+  min-height: 100vh;
 }
 
 .App-sidebar {
@@ -254,8 +299,14 @@ a {
   display: inline-block;
 }
 
+.Journey {
+  margin-top: -1px;
+}
 .Journey > ul {
   width: 100%;
+}
+.Journey .js-cloned {
+  display: none;
 }
 
 .Journey-header {
@@ -279,6 +330,11 @@ a {
   float: right;
 }
 
+.Matches {
+  background-color: #23282E;
+  min-height: 100vh;
+}
+
 .Match {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -289,11 +345,9 @@ a {
   color: #FFF;
   text-align: center;
   line-height: 0;
-  border-top: 1px solid #2E353D;
+  border-bottom: 1px solid #2E353D;
+  background-color: #23282E;
   line-height: 1;
-}
-.Match:first-child {
-  border-top: none;
 }
 .Match .Bet {
   display: none;
@@ -452,31 +506,61 @@ a {
   float: left;
 }
 
-.Clasification {
+.Clasification, .Bets table {
   width: 100%;
-  max-width: 450px;
   border-collapse: collapse;
 }
-.Clasification thead {
+.Clasification thead, .Bets table thead {
   display: none;
 }
-.Clasification td {
+.Clasification td, .Bets table td {
   font-size: 11px;
   padding-bottom: 10px;
   padding-right: 10px;
   vertical-align: middle;
   text-align: left;
+  color: #FFF;
+  line-height: 1;
+}
+
+.Clasification {
+  max-width: 450px;
 }
 .Clasification td:first-child, .Clasification td:last-child {
   width: 40px;
   text-align: right;
 }
+.Clasification td:last-child {
+  color: #6C7076;
+}
 .Clasification td:nth-child(2) {
   width: 31px;
 }
 
+.Bets {
+  padding: 20px 10px 20px 15px;
+  background-color: #13161A;
+}
+.Bets table td {
+  font-size: 13px;
+}
+.Bets table td:nth-child(1) {
+  width: 31px;
+}
+.Bets table td:nth-child(3) {
+  min-width: 35px;
+  color: #6C7076;
+}
+.Bets table td:nth-child(3), .Bets table td:nth-child(4) {
+  text-align: right;
+}
+.Bets table td:nth-child(4) {
+  width: 10px;
+}
+
 .Badge {
   display: inline-block;
+  text-align: center;
   width: 16px;
   height: 16px;
   border-radius: 100%;
@@ -499,52 +583,6 @@ a {
   background-color: #4EAED9;
 }
 
-.Btn {
-  position: relative;
-  cursor: pointer;
-  border: none;
-  display: inline-block;
-  height: 45px;
-  outline: none;
-}
-.Btn .Ico-spinner {
-  position: absolute;
-  opacity: 0;
-  top: 11px;
-  left: 50%;
-  margin-left: -11px;
-}
-.Btn.js-isWaiting .Ico:not(.Ico-spinner) {
-  opacity: 0;
-}
-.Btn.js-isWaiting .Ico-spinner {
-  opacity: 1;
-  -webkit-animation: spin 1s linear infinite;
-  -moz-animation: spin 1s linear infinite;
-  -ms-animation: spin 1s linear infinite;
-  -o-animation: spin 1s linear infinite;
-  animation: spin 1s linear infinite;
-}
-
-.Btn--submit {
-  background-color: #2B8FBD;
-  border-radius: 4px;
-}
-.Btn--submit:focus {
-  background-color: #53aed8;
-}
-
-.Btn--cancel {
-  background-color: #23282E;
-  border-radius: 4px;
-}
-.Btn--cancel:focus {
-  background-color: #2a3037;
-}
-.Btn--cancel .Ico {
-  opacity: 0.3;
-}
-
 @media only screen and (min-width: 720px) {
   .Matches {
     position: relative;
@@ -558,14 +596,18 @@ a {
     height: 100%;
     background-color: #2E353D;
   }
-  .Matches .Journey > ul {
+  .Matches .Journey {
     overflow: hidden;
   }
-  .Matches .Match {
+  .Matches .Journey > ul {
     width: 50%;
     float: left;
-    border-top: none;
-    border-bottom: 1px solid #2E353D;
+  }
+  .Matches .Journey .js-cloned {
+    display: block;
+  }
+  .Matches .Journey .js-2n-original {
+    display: none;
   }
 
   .Match-team {
@@ -577,8 +619,9 @@ a {
     font-size: 11px;
   }
 
-  .Clasification td {
-    font-size: 16px;
+  .Clasification td,
+  .Bets table td {
+    font-size: 15px;
   }
 }
 @media only screen and (min-width: 1300px) {
@@ -586,12 +629,11 @@ a {
     display: none;
   }
 
-  .App-content {
+  .App--withSidebar .App-content {
     float: left;
     width: 75%;
   }
-
-  .App-sidebar {
+  .App--withSidebar .App-sidebar {
     -webkit-transform: translateX(0) !important;
     -moz-transform: translateX(0) !important;
     -ms-transform: translateX(0) !important;

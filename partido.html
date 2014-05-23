@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>POORRA</title>
+        <meta name="description" content="">
+
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimal-ui">
+        <meta http-equiv="cleartype" content="on">
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/touch/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/touch/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/touch/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/images/touch/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" sizes="196x196" href="assets/images/touch/touch-icon-196x196.png">
+        <link rel="shortcut icon" href="assets/images/touch/apple-touch-icon.png">
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="">
+
+        <link rel="stylesheet" href="assets/stylesheets/app.css">
+    </head>
+    <body>
+
+
+        <div class="App">
+            <header class="App-header">
+                <a class="Logo" href="/">POORRA</a>
+
+                <a href="#" class="User">
+                    <strong>13º</strong>
+                    <figure><img src="http://placehold.it/31x31" /></figure>
+                </a>
+            </header>
+
+            <div class="App-content">
+                <div class="Journey">
+                    <h2 class="Journey-header"><strong>Jornada 1</strong><em>12 Jun</em></h2>
+
+                    <div class="Match">
+                        <p class="Match-bet">
+                            <span>
+                                <span class="Match-team" style="background-image: url(/assets/images/flags/BR.png);">Costa de Marfil</span>
+                                <strong class="Match-goals">0</strong>
+                            </span>
+                            <span>
+                                <strong class="Match-goals">1</strong>
+                                <span class="Match-team" style="background-image: url(/assets/images/flags/HR.png);">Croacia</span>
+                            </span>
+                        </p>
+                        <a href="#" class="Match-result">1 - 0</a>
+                    </div>
+
+                    <div class="Bets">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Avatar</th>
+                                    <th>User</th>
+                                    <th>Bet</th>
+                                    <th>Wadus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="http://placehold.it/31x31" /></td>
+                                    <td>wadus</td>
+                                    <td>0 - 2</td>
+                                    <td><em class="Badge Badge--blue">1</em></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="http://placehold.it/31x31" /></td>
+                                    <td>otro tío con un nombre largo (de dos líneas)</td>
+                                    <td>0 - 2</td>
+                                    <td><em class="Badge Badge--blue">1</em></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="http://placehold.it/31x31" /></td>
+                                    <td>wadus</td>
+                                    <td>0 - 2</td>
+                                    <td><em class="Badge Badge--blue">1</em></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="http://placehold.it/31x31" /></td>
+                                    <td>wadus</td>
+                                    <td>0 - 2</td>
+                                    <td><em class="Badge Badge--blue">1</em></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="http://placehold.it/31x31" /></td>
+                                    <td>wadus</td>
+                                    <td>0 - 2</td>
+                                    <td><em class="Badge Badge--blue">1</em></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="http://placehold.it/31x31" /></td>
+                                    <td>wadus</td>
+                                    <td>0 - 2</td>
+                                    <td><em class="Badge Badge--blue">1</em></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="App-sidebar"></div>
+        </div>
+
+
+        <script type="template/html" id="Bet-template">
+            <fieldset>
+                <input tabindex="1" type="tel" maxlength="2" placeholder="-">
+                <input tabindex="2" type="tel" maxlength="2" placeholder="-">
+                <div class="Bet-actions">
+                    <button tabindex="4" class="Btn Btn--cancel" type="reset"><i class="Ico Ico-cancel">Cancel</i></button>
+                    <button tabindex="3" class="Btn Btn--submit" type="submit">
+                        <i class="Ico Ico-check">Send!</i>
+                        <i class="Ico Ico-spinner"></i>
+                    </button>
+                </div>
+            </fieldset>
+        </script>
+
+        <script src="assets/javascripts/built.js"></script>
+
+    </body>
+</html>
