@@ -1,12 +1,21 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
+    var _ = require('underscore');
+
+    // Front-end javascript dependencies
+    var jsDeps = {
+        zepto: 'assets/javascripts/vendor/zepto/zepto.js',
+        fastclick: 'assets/javascripts/vendor/fastclick/lib/fastclick.js',
+        app: 'assets/javascripts/app.js'
+    };
+
+
+    grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         watch: {
             files: ['Gruntfile.js', 'assets/javascripts/**/*.js', 'assets/scss/**/*.scss'],
-            tasks: ['sass']
+            tasks: ['sass', 'concat']
         },
 
         sass: {
@@ -17,6 +26,23 @@ module.exports = function(grunt) {
                 files: {
                     'assets/stylesheets/app.css': 'assets/scss/app.scss'
                 }
+            }
+        },
+
+        concat: {
+            options: {
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                        '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
+            },
+            dist: {
+                src: _.values(jsDeps),
+                dest: 'assets/javascripts/built.js',
+            }
+        },
+
+        uglify: {
+            dist: {
+                'assets/javascripts/built.min.js': ['assets/javascripts/built.js']
             }
         },
 
@@ -37,8 +63,10 @@ module.exports = function(grunt) {
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-svg2css');
 
     // Default task(s).
-    grunt.registerTask('default', ['svg2css', 'sass']);
+    grunt.registerTask('default', ['svg2css', 'sass', 'concat', 'uglify']);
 };

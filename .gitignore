@@ -4,6 +4,9 @@
 .sass-cache
 node_modules
 assets/javascripts/vendor
+assets/stylesheets
+assets/javascripts/built.js
+assets/javascripts/built.min.js
 assets/images/icons/svg-sprites
 
 gh-pages
