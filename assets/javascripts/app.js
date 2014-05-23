@@ -27,7 +27,15 @@ $.extend(App.prototype, {
     events: function() {
         FastClick.attach(document.body);
 
-        $('body').on('click', '.App-header .User', this.toggleSidebar.bind(this));
+        $('body')
+            .on('click', '.App-header .User', this.toggleSidebar.bind(this))
+            .on('keyup', this.closeOnEsc.bind(this));
+    },
+
+    closeOnEsc: function(e) {
+        if (e.keyCode === 27) { // ESC key
+            Matches.closeCurrent();
+        }
     },
 
     toggleSidebar: function(e) {
@@ -74,7 +82,7 @@ $.extend(Matches, {
     toggleClass: 'js-isOpen',
 
     closeCurrent: function() {
-        Matches.prototype.close.call(Matches.prototype, Matches.$open);
+        Matches.$open && Matches.prototype.close.call(Matches.prototype, Matches.$open);
     }
 });
 
